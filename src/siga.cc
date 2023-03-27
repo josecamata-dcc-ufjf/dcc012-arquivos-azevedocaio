@@ -106,14 +106,25 @@ int  Siga::PesquisaPorMatricula(int matricula)
 {
     // TODO: implementar pesquisa por matrícula
     // Posicione o cursor para o inicio do arquivo:
+    this->file_stream.seekg(0, file_stream.beg);
+
     // Para i = 0 até n_estudante
-    //    Ler estudante na posição corrente no arquivo
-    //    Testar se é a matricula procurada, se afirmativo
-    //    retorne a posiçao i.
-    // Fim-Para
-    // Coloque o cursor para o final do arquivo
-    // retorne -1
-    return -1;
+    for(int i = 0; i < this->n_estudantes; i++)
+    {
+        //    Ler estudante na posição corrente no arquivo
+        Estudante est;
+        this->file_stream.read((char *)&est, sizeof(Estudante));
+
+        //    Testar se é a matricula procurada, se afirmativo
+        if(est.ObterMatricula() == matricula)
+        {
+            this->file_stream.seekp(this->n_estudantes * sizeof(Estudante), this->file_stream.beg);
+
+            //    retorne a posiçao i.
+            return i;
+        }
+        // Fim-Para
+    }
 }
         
 void Siga::AdicionaEstudante(Estudante est)

@@ -1,2 +1,2 @@
-#define INPUT_DATA_DIR "/workspaces/dcc012-lab01-arquivos/tests/data/"
+#define INPUT_DATA_DIR "C:/Users/Caio Azevedo/Documents/GitHub/dcc012-arquivos-azevedocaio/tests/data/"
 
