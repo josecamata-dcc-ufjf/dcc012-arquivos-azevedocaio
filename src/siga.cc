@@ -159,8 +159,14 @@ Estudante Siga::ObterEstudante(int idx)
     Estudante est;
     // TODO: implementar obter estudante
     // Posicione o cursor para o inicio do arquivo
+    this->file_stream.seekg(0, this->file_stream.beg);
+
     // Posicione o cursor para a posição idx
+    this->file_stream.seekg(idx, this->file_stream.beg);
+
     // Leia o estudante na posição idx
+    LeiaEstudante(idx, est);
+
     // Retorne o estudante
     return est;
 }
