@@ -138,10 +138,20 @@ void Siga::AdicionaEstudante(Estudante est)
     // TODO: Implementar cadastro de estudante
     // Passos:
     // Testar se est já foi cadastrado
-    // Se já cadastrado, retorne sem fazer nada   
-    // Caso Contrário, adicione o estudante no final do arquivobinário
-    // e incremente o numero de estudantes
-    
+    if(PesquisaPorMatricula(est.ObterMatricula()) != -1)
+    {
+        // Se já cadastrado, retorne sem fazer nada 
+        return;
+    }
+    else
+    {
+        // Caso Contrário, adicione o estudante no final do arquivobinário
+        this->file_stream.seekg(0, file_stream.end);
+        this->EscrevaEstudante(this->n_estudantes, est);
+
+        // e incremente o numero de estudantes
+        this->n_estudantes++;
+    } 
 }
   
 Estudante Siga::ObterEstudante(int idx)
