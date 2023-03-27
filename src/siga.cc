@@ -150,7 +150,7 @@ void Siga::AdicionaEstudante(Estudante est)
         this->EscrevaEstudante(this->n_estudantes, est);
 
         // e incremente o numero de estudantes
-        this->n_estudantes++;
+        this->n_estudantes = this->n_estudantes + 1;
     } 
 }
   
