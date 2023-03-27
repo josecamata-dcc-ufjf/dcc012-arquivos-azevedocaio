@@ -125,6 +125,12 @@ int  Siga::PesquisaPorMatricula(int matricula)
         }
         // Fim-Para
     }
+
+    // Coloque o cursor para final do arquivo
+    this->file_stream.seekg(0, file_stream.end);
+
+    // retorne -1
+    return -1;
 }
         
 void Siga::AdicionaEstudante(Estudante est)
