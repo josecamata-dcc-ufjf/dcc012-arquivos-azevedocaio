@@ -177,36 +177,31 @@ void Siga::SalvaCSV(string arquivo_csv)
     // TODO: implementar salvamento de arquivo CSV
     // Passos:
     // Abrir arquivo CSV
-    ofstream filecsv;
-    filecsv.open("arquivo_csv",ios::out);
-    if(!filecsv.is_open())
-    {
-        cout << "Erro ao abrir arquivo csv" << endl;
-        return;
-    }
+    std::fstream csv_file;
 
     // Escrever cabeçalho
-    // Posicione o cursor para o inicio do arquivo binário
-    this->file_stream.seekg(0, this->file_stream.beg);
+    csv_file.open(arquivo_csv_path, std::ios::out);
+    csv_file << "#Nome,matricula,ano,ira\n";
 
+    // Posicione o cursor para o inicio do arquivo binário
+    this->file_stream.seekg(0, ios::beg);
+    
     // Para cada linha de dados
-    for(int i=0; i<this->n_estudantes;i++)
+    for(int i = 0; i < this->n_estudantes; i++)
     {
         //    Ler um estudante do arquivo binário
-        Estudante est;
-        LeiaEstudante(i,est);
+        Estudante est = this->ObterEstudante(i);
 
         //    Escrever o objeto estudante no arquivo CSV
-        filecsv<<est.ObterMatricula()<<",";
-        filecsv<<est.ObterNome()<<",";
-        filecsv<<est.ObterAnoIngresso()<<",";
-        filecsv<<est.ObterIRA();
+        csv_file << est.ObterNome() << ","
+        << est.ObterMatricula() << ","
+        << est.ObterAnoIngresso() << ","
+        << est.ObterIRA() << "\n";
+        // Fim-Para
     }
 
-    // Fim-Para
-
-    filecsv.close();
     // Fechar arquivo CSV
+    csv_file.close();
 }
         
         
